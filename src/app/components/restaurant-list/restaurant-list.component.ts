@@ -15,29 +15,28 @@ interface Restaurant {
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div class="container mt-4">
-      <h2 class="text-center mb-4">Nos Restaurants</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4" *ngFor="let restaurant of restaurants">
-          <div class="card h-100 shadow-sm">
-            <img 
-              [src]="restaurant.imgUrl" 
-              class="card-img-top" 
-              alt="{{restaurant.name}}"
-              style="height: 200px; object-fit: cover;">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">{{restaurant.name}}</h5>
-              <p class="card-text">{{restaurant.location}}</p>
-              <a [routerLink]="['/reserve', restaurant.restaurantID]" 
-                 class="btn btn-primary mt-auto">
-                 Réserver une table
-              </a>
-            </div>
+    <div class="restaurant-container">
+      <h2 class="restaurant-title">Découvrez Nos Restaurants</h2>
+      <div class="restaurant-grid">
+        <div class="restaurant-card" *ngFor="let restaurant of restaurants">
+          <div class="card-image-container">
+            <img [src]="restaurant.imgUrl" [alt]="restaurant.name">
+          </div>
+          <div class="card-content">
+            <h3 class="restaurant-name">{{restaurant.name}}</h3>
+            <p class="restaurant-location">
+              <i class="fas fa-map-marker-alt"></i> {{restaurant.location}}
+            </p>
+            <a [routerLink]="['/reserve', restaurant.restaurantID]" 
+               class="reserve-button">
+               Réserver une table
+            </a>
           </div>
         </div>
       </div>
     </div>
-  `
+  `,
+  styleUrls: ['./restaurant-list.component.css']
 })
 export class RestaurantListComponent implements OnInit {
   restaurants: Restaurant[] = [];

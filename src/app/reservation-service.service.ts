@@ -11,7 +11,7 @@ export class ReservationService {
 
   constructor(private http: HttpClient) { }
 
-  createReservation(reservation: ReservationDTO): Observable<any> {
-    return this.http.post(this.apiUrl, reservation);
+  createReservation(reservation: ReservationDTO): Observable<ReservationDTO> {
+    return this.http.post<ReservationDTO>(this.apiUrl, reservation);
   }
 }
